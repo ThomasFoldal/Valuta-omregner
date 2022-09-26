@@ -1,0 +1,26 @@
+﻿<Window x:Class="Valuta_omregner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Valuta_omregner"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="100" Width="798" ResizeMode="CanMinimize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox Name="TextLeft" Grid.Row="1" FontSize="20" TextChanged="TextLeft_TextChanged" PreviewTextInput="TextLeft_PreviewTextInput"/>
+        <TextBox Name="TextRight" Grid.Column="3" Grid.Row="1" FontSize="24" IsEnabled="False"/>
+        <Button Grid.Column="1" Content="&lt;--&gt;" MaxHeight="40" Click="Button_Click"/>
+        <ComboBox Name="CBLeft" FontSize="20"/>
+        <ComboBox Name="CBRight" Grid.Column="2" FontSize="24"/>
+
+    </Grid>
+</Window>
