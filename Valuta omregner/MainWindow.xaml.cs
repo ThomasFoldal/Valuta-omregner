@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using System.Xml;
 
 namespace Valuta_omregner
 {
@@ -26,8 +27,12 @@ namespace Valuta_omregner
         {
             {"m/s", 1.0}, {"km/h", 3.6}, {"ft/s", 3.28084}, {"knots", 1.94384}, {"mph", 2.236936}
         };
+        public XmlDocument document = new XmlDocument();
         public MainWindow()
         {
+            
+            document.LoadXml("www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=da");
+            
             InitializeComponent();
             CBLeft.ItemsSource = units.Keys;
             CBRight.ItemsSource = units.Keys;
