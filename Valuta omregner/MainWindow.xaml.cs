@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Xml;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
-using System.Xml;
 
 namespace Valuta_omregner
 {
@@ -23,16 +23,42 @@ namespace Valuta_omregner
     /// </summary>
     public partial class MainWindow : Window
     {
-        Dictionary<string, double> units = new Dictionary<string, double>()
-        {
-            {"m/s", 1.0}, {"km/h", 3.6}, {"ft/s", 3.28084}, {"knots", 1.94384}, {"mph", 2.236936}
-        };
+        public string url = "https://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=da";
+        Dictionary<string, double> units = new Dictionary<string, double>() { { "DDK", 100.0 } };
         public XmlDocument document = new XmlDocument();
         public MainWindow()
         {
-            
-            document.LoadXml("www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=da");
-            
+            XmlTextReader textReader = new XmlTextReader("https://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=da");
+            while (textReader.Read())
+            {
+                string a;
+                string b;
+                double c;
+                switch (textReader.NodeType)
+                {
+                    case XmlNodeType.Element:
+                        if (textReader.Name == "currency")
+                        {
+                            textReader.MoveToNextAttribute();
+                            a = textReader.Value;
+                            textReader.MoveToNextAttribute();
+                            b = textReader.Value;
+                            textReader.MoveToNextAttribute();
+                            if (textReader.Value == "-")
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                c = Convert.ToDouble(textReader.Value);
+                            }
+                            units.Add(a, c);
+                        }
+                        break;
+                    case XmlNodeType.EndElement:
+                        break;
+                }
+            }
             InitializeComponent();
             CBLeft.ItemsSource = units.Keys;
             CBRight.ItemsSource = units.Keys;
