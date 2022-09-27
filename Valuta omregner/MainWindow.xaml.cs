@@ -23,7 +23,6 @@ namespace Valuta_omregner
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string url = "https://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=da";
         Dictionary<string, double> units = new Dictionary<string, double>() { { "DDK", 100.0 } };
         public XmlDocument document = new XmlDocument();
         public MainWindow()
