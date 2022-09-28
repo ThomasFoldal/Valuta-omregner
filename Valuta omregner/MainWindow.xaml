@@ -19,8 +19,8 @@
         <TextBox Name="TextLeft" Grid.Row="1" FontSize="20" TextChanged="TextLeft_TextChanged" PreviewTextInput="TextLeft_PreviewTextInput"/>
         <TextBox Name="TextRight" Grid.Column="3" Grid.Row="1" FontSize="24" IsEnabled="False"/>
         <Button Grid.Column="1" Content="&lt;--&gt;" MaxHeight="40" Click="Button_Click"/>
-        <ComboBox Name="CBLeft" FontSize="20"/>
-        <ComboBox Name="CBRight" Grid.Column="2" FontSize="24"/>
+        <ComboBox Name="CBLeft" FontSize="20" SelectionChanged="CBLeft_SelectionChanged"/>
+        <ComboBox Name="CBRight" Grid.Column="2" FontSize="24" SelectionChanged="CBRight_SelectionChanged"/>
 
     </Grid>
 </Window>

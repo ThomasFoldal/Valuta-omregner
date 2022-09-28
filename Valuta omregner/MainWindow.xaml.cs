@@ -73,6 +73,10 @@ namespace Valuta_omregner
 
         private void TextLeft_TextChanged(object sender, TextChangedEventArgs e)
         {
+            ShowResultText();
+        }
+        private void ShowResultText()
+        {
             string text = TextLeft.Text;
             if (text == "")
             {
@@ -88,6 +92,7 @@ namespace Valuta_omregner
                 TextRight.Text = Convert.ToString(Calculate(input, from, to));
             }
         }
+
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
         {
             e.Handled = !AreAllValidNumericChars(e.Text);
@@ -120,6 +125,16 @@ namespace Valuta_omregner
             string temp = CBLeft.Text;
             CBLeft.Text = CBRight.Text;
             CBRight.Text = temp;
+        }
+
+        private void CBLeft_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowResultText();
+        }
+
+        private void CBRight_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowResultText();
         }
     }
 }
