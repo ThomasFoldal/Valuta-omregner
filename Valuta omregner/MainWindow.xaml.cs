@@ -54,15 +54,11 @@ namespace Valuta_omregner
                             units.Add(a, c);
                         }
                         break;
-                    case XmlNodeType.EndElement:
-                        break;
                 }
             }
             InitializeComponent();
             CBLeft.ItemsSource = units.Keys;
             CBRight.ItemsSource = units.Keys;
-            CBLeft.Text = "m/s";
-            CBRight.Text = "km/h";
         }
         private double Calculate(double input, double from, double to)
         {
